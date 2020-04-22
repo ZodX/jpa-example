@@ -14,6 +14,7 @@ import java.util.List;
 public class Main {
 
     private static Faker faker = new Faker();
+    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa-example");
 
     private static Person randomPerson() {
         Person person = Person.builder()
@@ -34,13 +35,15 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa-example");
+
         EntityManager em = emf.createEntityManager();
 
-        int n = 1000;
+        int n;
 
-        if (args[0].length() > 0) {
+        if (args.length > 0) {
             n = Integer.parseInt(args[0]);
+        } else {
+            n = 1000;
         }
 
         em.getTransaction().begin();
