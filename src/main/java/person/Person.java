@@ -27,6 +27,7 @@ public class Person {
     private LocalDate dob;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     @Embedded
